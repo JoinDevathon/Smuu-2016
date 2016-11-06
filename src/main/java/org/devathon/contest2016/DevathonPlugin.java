@@ -13,9 +13,10 @@ public class DevathonPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        clearEntities();
         initWorld();
 
-        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
     @Override
@@ -24,9 +25,6 @@ public class DevathonPlugin extends JavaPlugin {
     }
 
     private void initWorld() {
-
-        clearEntities();
-
         spawnLocation.getBlock().setType(Material.COBBLESTONE);
         spawnLocation.add(1, 0, 0).getBlock().setType(Material.COBBLESTONE);
         spawnLocation.add(0, 0, 1).getBlock().setType(Material.COBBLESTONE);
