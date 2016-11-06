@@ -3,6 +3,8 @@ package org.devathon.contest2016;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class DevathonPlugin extends JavaPlugin {
@@ -22,6 +24,8 @@ public class DevathonPlugin extends JavaPlugin {
     }
 
     private void initWorld() {
+
+        clearEntities();
 
         spawnLocation.getBlock().setType(Material.COBBLESTONE);
         spawnLocation.add(1, 0, 0).getBlock().setType(Material.COBBLESTONE);
@@ -107,9 +111,20 @@ public class DevathonPlugin extends JavaPlugin {
         spawnLocation.add(1, 0, 0).getBlock().setType(Material.COBBLESTONE);
         spawnLocation.add(1, 0, 0).getBlock().setType(Material.COBBLESTONE);
         spawnLocation.add(1, 0, 0).getBlock().setType(Material.COBBLESTONE);
-        
+
         spawnLocation.setX(0);
         spawnLocation.setZ(0);
+
+        spawnLocation.add(0.5, 1, 3.5).setYaw((float) 180);
+
+        spawnLocation.getWorld().spawnEntity(spawnLocation, EntityType.IRON_GOLEM);
+
+        spawnLocation.setX(0);
+        spawnLocation.setZ(0);
+    }
+
+    private void clearEntities() {
+        Bukkit.getWorlds().get(0).getEntities().forEach(Entity::remove);
     }
 
     public Location getSpawnLocation() {
